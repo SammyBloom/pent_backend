@@ -10,12 +10,23 @@ const server = http.createServer((req, res) => {
     switch(req.url) {
         case '/':
             path += 'index.html';
+            res.statusCode = 200;
             break;
+        
         case '/todo':
             path += 'todo.html';
+            res.statusCode = 200;
             break;
+            
+        case '/todo-me':
+            res.statusCode = 301;
+            res.setHeader('Location', '/todo');
+            res.end();
+            break;
+            
         default:
             path += '404.html';
+            res.statusCode = 404;
             break;
     }
 
